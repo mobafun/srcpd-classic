@@ -1,4 +1,4 @@
-# Patches for Srcpd 2.1.3
+# Patches for Srcpd 2.1.3 
 
 srcpd is a daemon to control different model railway hardware by a device independent protocol called SRCPD.
 
@@ -10,7 +10,7 @@ SRCP steht für "Simple Railroad Command Protocol", eine Entwicklung aus dem Use
 siehe http://srcpd.sourceforge.net/srcp/srcp-084.pdf
 
 ### srcpd
-Autoren:
+Autoren: Matthias Trute, et al
 
 srcpd ist in gewissem Sinne die Referenzimplementierung für SRCP. Die letzte Version 2.1.3 wird seit 2014 nicht mehr weiter gepflegt, obwohl einige (bekannte) Fehler enthalten sind.
 Projekt-Homepage: http://srcpd.sourceforge.net
