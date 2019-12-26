@@ -19,6 +19,6 @@ Dwonload des ursprünglichen Quellcodes: https://sourceforge.net/projects/srcpd/
 Der srcpd ist eigentlich ein tolles Werkzeug für kleine Modelleisenbahn-Projekte, die einfach nur ein paar Lokomotiven und Weichen ansteuern wollen.
 
 ### Patches
-Dieses Projekt enthält einige wichtige Bugfixes, um "erst einmal" einen lauffähigen Daemon auf einem Raspberry Pi in KOmbination mit RocRail zu haben. Insgesamt ist der C Code aber nicht mehr zeitgemäß und schwierig wartbar. Mittelfristig wird es deshalb eine Reimplementierung mit moderneren Mitteln geben.
+Dieses Projekt enthält einige wichtige Bugfixes, um "erst einmal" einen lauffähigen Daemon auf einem Raspberry Pi in Kombination mit RocRail zu haben. Insgesamt ist der C Code aber nicht mehr zeitgemäß und schwierig wartbar. Mittelfristig wird es deshalb eine Reimplementierung mit moderneren Mitteln geben.
 
 Die GIT Änderungshistorie ist gepfelgt und dient zur Nachverfolgung der Veränderungen seit 2.1.3
