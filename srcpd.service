@@ -1,0 +1,15 @@
+[Unit]
+Description=SRCP digital railroad controller -example daemon config
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/mbahn/bin/srcpd -n -f /opt/mbahn/etc/srcpd.conf
+KillMode=control-group
+Restart=on-abort
+RestartPreventExitStatus=255
+
+[Install]
+WantedBy=multi-user.target
+
