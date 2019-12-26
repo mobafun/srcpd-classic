@@ -115,11 +115,18 @@ int dequeueNextGA(bus_t busnumber, ga_state_t * a)
     return out[busnumber];
 }
 
+bool isInitializedGA(bus_t busnumber, int addr)
+{
+    return ( ga[busnumber].gastate[addr].protocol != 0x00 );
+}
+
 int getGA(bus_t busnumber, int addr, ga_state_t * a)
 {
     int number_ga = get_number_ga(busnumber);
-
-    if ((addr > 0) && (addr <= number_ga)) {
+    
+    /* rbe rocrail fix */
+    if ( (addr > 0) && (addr <= number_ga) &&
+         ( isInitializedGA(busnumber, addr) )) {
         *a = ga[busnumber].gastate[addr];
         return SRCP_OK;
     }
@@ -128,10 +135,6 @@ int getGA(bus_t busnumber, int addr, ga_state_t * a)
     }
 }
 
-bool isInitializedGA(bus_t busnumber, int addr)
-{
-    return ga[busnumber].gastate[addr].protocol != 0x00;
-}
 
 /* ********************
  *   SRCP commands
@@ -140,10 +143,12 @@ int setGA(bus_t busnumber, int addr, ga_state_t a)
 {
     int number_ga = get_number_ga(busnumber);
 
-    if ((addr > 0) && (addr <= number_ga)) {
+    /* rbe rocrail fix */
+    if ( (addr > 0) && (addr <= number_ga) &&
+         ( isInitializedGA(busnumber, addr) )) {
         char msg[1000];
-        if (!isInitializedGA(busnumber, addr))
-            initGA(busnumber, addr, 'P');
+        /* if (!isInitializedGA(busnumber, addr))
+            initGA(busnumber, addr, 'P'); */
         ga[busnumber].gastate[addr].id = a.id;
         ga[busnumber].gastate[addr].action = a.action;
         ga[busnumber].gastate[addr].port = a.port;
@@ -212,13 +217,21 @@ int infoGA(bus_t busnumber, int addr, int port, char *msg)
 {
     int number_ga = get_number_ga(busnumber);
 
+    /* rbe patch, send init timestamp if initialized */
     if ((addr > 0) && (addr <= number_ga) && (port >= 0)
         && (port < MAXGAPORT)
-        && (ga[busnumber].gastate[addr].tv[port].tv_sec > 0)) {
-        sprintf(msg, "%lu.%.3lu 100 INFO %ld GA %d %d %d\n",
+        && (isInitializedGA(busnumber, addr)) ) {
+        if (ga[busnumber].gastate[addr].tv[port].tv_sec > 0) {
+            sprintf(msg, "%lu.%.3lu 100 INFO %ld GA %d %d %d\n",
                 ga[busnumber].gastate[addr].tv[port].tv_sec,
                 ga[busnumber].gastate[addr].tv[port].tv_usec / 1000,
                 busnumber, addr, port, ga[busnumber].gastate[addr].action);
+        } else {
+            sprintf(msg, "%lu.%.3lu 100 INFO %ld GA %d %d %d\n",
+                ga[busnumber].gastate[addr].inittime.tv_sec,
+                ga[busnumber].gastate[addr].inittime.tv_usec / 1000,
+                busnumber, addr, port, ga[busnumber].gastate[addr].action);
+        }
     }
     else {
         struct timeval t;
