@@ -44,6 +44,10 @@ int enqueueGA(bus_t busnumber, int addr, int port, int action,
     int number_ga = get_number_ga(busnumber);
 
     if ((addr > 0) && (addr <= number_ga)) {
+        // this indicates a restarted daemon without notice of client
+        //if (!isInitializedGA(busnumber, addr)) {
+        //     return SRCP_DEVICEREINITIALIZED;
+        //}
         if (queue_isfull(busnumber)) {
             syslog_bus(busnumber, DBG_WARN, "GA Command Queue full");
             return SRCP_TEMPORARILYPROHIBITED;
@@ -302,7 +306,6 @@ int getlockGA(bus_t busnumber, int addr, sessionid_t * sessionid)
 {
     *sessionid = ga[busnumber].gastate[addr].locked_by;
     return SRCP_OK;
-
 }
 
 int describeLOCKGA(bus_t bus, int addr, char *reply)
@@ -401,7 +404,7 @@ int init_GA(bus_t busnumber, int number)
         return 1;
 
     if (number > 0) {
-        /* one more, 'cause we do not use index 0, but start with 1 */
+        /* one more, 'cause we do not use index 0, but may start with 1 */
         ga[busnumber].gastate = malloc((number + 1) * sizeof(ga_state_t));
         if (ga[busnumber].gastate == NULL)
             return 1;

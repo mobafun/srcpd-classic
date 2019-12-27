@@ -9,7 +9,7 @@
 #include "config-srcpd.h"
 #include "srcp-session.h"
 
-#define MAXGAPORT 2
+#define MAXGAPORT 8
 
 /* accessory decoder */
 typedef struct _GASTATE {
