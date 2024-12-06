@@ -11,6 +11,6 @@
 
 #include "config-srcpd.h"
 
-int startup_DESCRIPTION(void);
-int describeBus(bus_t bus, char *reply);
+extern int startup_DESCRIPTION(void);
+extern int describeBus(bus_t bus, char *reply);
 #endif

@@ -6,13 +6,12 @@
  *
  */
 
-
 #ifndef _M605X_H
 #define _M605X_H
 
 #include <libxml/tree.h> /*xmlDocPtr, xmlNodePtr*/
 
-#define M6020_MODE            0x0001    /* Subtyp zum M605X */
+#define M6020_MODE 0x0001 /* Subtyp zum M605X */
 
 typedef struct _M6051_DATA {
     int number_fb;
@@ -25,13 +24,13 @@ typedef struct _M6051_DATA {
     unsigned int pause_between_bytes;
 } M6051_DATA;
 
-int readconfig_m605x(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
+extern int readconfig_m605x(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
 
-int init_line6051(bus_t bus);
-int init_bus_M6051(bus_t bus);
-int init_gl_M6051(gl_state_t *gl);
-int init_ga_M6051(ga_state_t *ga);
-int getDescription_M6051(char *reply);
-void *thr_sendrec_M6051(void *);
+extern int init_line6051(bus_t bus);
+extern int init_bus_M6051(bus_t bus);
+extern int init_gl_M6051(gl_state_t *gl);
+extern int init_ga_M6051(ga_state_t *ga);
+extern int getDescription_M6051(char *reply);
+extern void *thr_sendrec_M6051(void *);
 
 #endif

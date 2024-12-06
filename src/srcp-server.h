@@ -6,7 +6,6 @@
  *
  */
 
-
 #ifndef _SRCP_SERVER_H
 #define _SRCP_SERVER_H
 
@@ -18,11 +17,10 @@
 #include <sys/param.h>
 
 #include "config-srcpd.h" /*for bus_t*/
-#include "config.h" /*for VERSION*/
-
+#include "config.h"       /*for VERSION*/
 
 /* SRCP server welcome message */
-static const char WELCOME_MSG[] = 
+static const char WELCOME_MSG[] =
     "srcpd V" VERSION "; SRCP 0.8.4; SRCPOTHER 0.8.3\n";
 
 typedef struct _SERVER_DATA {
@@ -39,16 +37,15 @@ typedef enum {
     ssResetting
 } server_state_t;
 
-void set_server_state(server_state_t);
-server_state_t get_server_state();
+extern void set_server_state(server_state_t);
+extern server_state_t get_server_state();
 
-int readconfig_server(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
-int startup_SERVER(void);
-int init_bus_server(bus_t);
-void server_reset(void);
-void server_shutdown(void);
-int describeSERVER(bus_t bus, int addr, char *reply);
-int infoSERVER(char *msg);
+extern int readconfig_server(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
+extern int startup_SERVER(void);
+extern int init_bus_server(bus_t);
+extern void server_reset(void);
+extern void server_shutdown(void);
+extern int describeSERVER(bus_t bus, int addr, char *reply);
+extern int infoSERVER(char *msg);
 
 #endif
-

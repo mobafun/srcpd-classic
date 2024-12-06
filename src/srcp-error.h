@@ -44,6 +44,6 @@
 #define SRCP_OUTOFRESOURCES             500
 
 
-int srcp_fmt_msg(int errorcode, char *msg, struct timeval);
+extern int srcp_fmt_msg(int errorcode, char *msg, struct timeval);
 
 #endif

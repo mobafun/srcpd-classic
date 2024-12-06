@@ -16,10 +16,8 @@
   along with srcpd.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #ifndef DCC_ADDRESS_H
 #define DCC_ADDRESS_H
-
 
 /* Map lenz address to nmra/subaddress values and backward.
  * Valid ranges
@@ -27,12 +25,11 @@
  *   nmra = 0..511
  *   sub = 0..3
  */
-void lenz_to_nmra(unsigned int lenz, unsigned int* nmra,
-        unsigned char* sub);
+extern void lenz_to_nmra(unsigned int lenz, unsigned int *nmra,
+                         unsigned char *sub);
 
-void nmra_to_lenz(unsigned int nmra, unsigned char sub,
-        unsigned int *lenz);
-
+extern void nmra_to_lenz(unsigned int nmra, unsigned char sub,
+                         unsigned int *lenz);
 
 /* Map nmra/port to lenz/port values and backward.
  * Valid ranges
@@ -41,10 +38,10 @@ void nmra_to_lenz(unsigned int nmra, unsigned char sub,
  *   nmra_a = 0..511
  *   nmra_p = 0..7
  */
-void lenz2_to_nmra2(unsigned int lenz, unsigned char port,
-        unsigned int* nmra_a, unsigned char* nmra_p);
+extern void lenz2_to_nmra2(unsigned int lenz, unsigned char port,
+                           unsigned int *nmra_a, unsigned char *nmra_p);
 
-void nmra2_to_lenz2(unsigned int nmra_a, unsigned char nmra_p,
-        unsigned int *lenz, unsigned char* port);
+extern void nmra2_to_lenz2(unsigned int nmra_a, unsigned char nmra_p,
+                           unsigned int *lenz, unsigned char *port);
 
 #endif

@@ -15,7 +15,7 @@
 #include "config.h"
 
 #ifdef NO_CFMAKERAW
-int cfmakeraw(struct termios *termios_p);
+extern int cfmakeraw(struct termios *termios_p);
 #endif
 
 #endif

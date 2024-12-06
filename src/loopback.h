@@ -12,11 +12,11 @@ typedef struct _LOOPBACK_DATA {
     ga_state_t tga[50];
 } LOOPBACK_DATA;
 
-int readconfig_LOOPBACK(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
-int init_bus_LOOPBACK(bus_t );
-int init_gl_LOOPBACK(gl_state_t *);
-int init_ga_LOOPBACK(ga_state_t *);
-int getDescription_LOOPBACK(char *reply);
-void* thr_sendrec_LOOPBACK(void *);
+extern int readconfig_LOOPBACK(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
+extern int init_bus_LOOPBACK(bus_t);
+extern int init_gl_LOOPBACK(gl_state_t *);
+extern int init_ga_LOOPBACK(ga_state_t *);
+extern int getDescription_LOOPBACK(char *reply);
+extern void *thr_sendrec_LOOPBACK(void *);
 
 #endif

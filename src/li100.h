@@ -17,8 +17,7 @@
 #ifndef _LI100_H
 #define _LI100_H
 
-#include <libxml/tree.h>        /*xmlDocPtr, xmlNodePtr */
-
+#include <libxml/tree.h> /*xmlDocPtr, xmlNodePtr */
 
 typedef struct _LI100_DATA {
     int number_ga;
@@ -41,16 +40,16 @@ typedef struct _LI100_DATA {
     int pgm_mode;
 } LI100_DATA;
 
-int readConfig_LI100_USB(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
-int init_bus_LI100_USB(bus_t busnumber);
+extern int readConfig_LI100_USB(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
+extern int init_bus_LI100_USB(bus_t busnumber);
 
-int readConfig_LI100_SERIAL(xmlDocPtr doc, xmlNodePtr node,
-                            bus_t busnumber);
-int init_bus_LI100_SERIAL(bus_t busnumber);
+extern int readConfig_LI100_SERIAL(xmlDocPtr doc, xmlNodePtr node,
+                                   bus_t busnumber);
+extern int init_bus_LI100_SERIAL(bus_t busnumber);
 
-int init_gl_LI100(gl_state_t * gl);
-int init_ga_LI100(ga_state_t * ga);
-void *thr_sendrec_LI100_USB(void *);
-void *thr_sendrec_LI100_SERIAL(void *);
+extern int init_gl_LI100(gl_state_t *gl);
+extern int init_ga_LI100(ga_state_t *ga);
+extern void *thr_sendrec_LI100_USB(void *);
+extern void *thr_sendrec_LI100_SERIAL(void *);
 
 #endif

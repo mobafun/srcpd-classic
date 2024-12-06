@@ -34,29 +34,29 @@ typedef struct _GA {
     ga_state_t* gastate;
 } GA;
 
-int startup_GA(void);
-int init_GA(bus_t busnumber, int number);
-int get_number_ga(bus_t busnumber);
+extern int startup_GA(void);
+extern int init_GA(bus_t busnumber, int number);
+extern int get_number_ga(bus_t busnumber);
 
-int enqueueGA(bus_t busnumber, int addr, int port, int action,
+extern int enqueueGA(bus_t busnumber, int addr, int port, int action,
             long int activetime);
-int dequeueNextGA(bus_t busnumber, ga_state_t *);
-int queue_GA_isempty(bus_t busnumber);
+extern int dequeueNextGA(bus_t busnumber, ga_state_t *);
+extern int queue_GA_isempty(bus_t busnumber);
 
-int getGA(bus_t busnumber, int addr, ga_state_t *a);
-int setGA(bus_t busnumber, int addr, ga_state_t a);
-int initGA(bus_t busnumber, int addr, const char protocol);
-int termGA(bus_t busnumber, int addr);
-int describeGA(bus_t busnumber, int addr, char *msg);
-int infoGA(bus_t busnumber, int addr, int port, char *msg);
-int cmpGA(ga_state_t a, ga_state_t b);
-bool isInitializedGA(bus_t busnumber, int addr);
+extern int getGA(bus_t busnumber, int addr, ga_state_t *a);
+extern int setGA(bus_t busnumber, int addr, ga_state_t a);
+extern int initGA(bus_t busnumber, int addr, const char protocol);
+extern int termGA(bus_t busnumber, int addr);
+extern int describeGA(bus_t busnumber, int addr, char *msg);
+extern int infoGA(bus_t busnumber, int addr, int port, char *msg);
+extern int cmpGA(ga_state_t a, ga_state_t b);
+extern bool isInitializedGA(bus_t busnumber, int addr);
 
-int lockGA(bus_t busnumber, int addr, long int duration,
+extern int lockGA(bus_t busnumber, int addr, long int duration,
            sessionid_t sessionid);
-int getlockGA(bus_t busnumber, int addr, sessionid_t * sessionid);
-int unlockGA(bus_t busnumber, int addr, sessionid_t sessionid);
-void unlock_ga_bysessionid(sessionid_t);
-void unlock_ga_bytime(void);
-int describeLOCKGA(bus_t bus, int addr, char *reply);
+extern int getlockGA(bus_t busnumber, int addr, sessionid_t * sessionid);
+extern int unlockGA(bus_t busnumber, int addr, sessionid_t sessionid);
+extern void unlock_ga_bysessionid(sessionid_t);
+extern void unlock_ga_bytime(void);
+extern int describeLOCKGA(bus_t bus, int addr, char *reply);
 #endif

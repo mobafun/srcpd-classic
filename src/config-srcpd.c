@@ -78,6 +78,9 @@ static const char DISABLE_MSG[] =
     "\"%s\" has been disabled at compile time.\n";
 
 
+bus_data_t buses[MAX_BUSES];
+bus_t num_buses;
+
 /* check if a bus has a device group or not */
 int bus_has_devicegroup(bus_t bus, int dg)
 {

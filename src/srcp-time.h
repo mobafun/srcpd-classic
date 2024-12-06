@@ -29,17 +29,17 @@ typedef struct TIMEDISTORT
   struct timeval inittime;
 } time_distort_t;
 
-int startup_TIME(void);
-int setTIME(int d, int h, int m, int s);
-int initTIME(int fx, int fy);
-int termTIME();
-int getTIME(vtime_t *vt);
-int infoTIME(char *msg);
-int waitTIME(int d, int h, int m, int s, char *reply);
-int describeTIME(char *reply);
-bool time_is_available();
+extern int startup_TIME(void);
+extern int setTIME(int d, int h, int m, int s);
+extern int initTIME(int fx, int fy);
+extern int termTIME();
+extern int getTIME(vtime_t *vt);
+extern int infoTIME(char *msg);
+extern int waitTIME(int d, int h, int m, int s, char *reply);
+extern int describeTIME(char *reply);
+extern bool time_is_available();
 
-void create_time_thread();
-void cancel_time_thread();
+extern void create_time_thread();
+extern void cancel_time_thread();
 
 #endif

@@ -2,8 +2,8 @@
                           srcp-info.h  -  description
                              -------------------
     begin                : Mon May 20 2002
-    copyright            : (C) 2002 by 
-    email                : 
+    copyright            : (C) 2002 by
+    email                :
  ***************************************************************************/
 
 /***************************************************************************
@@ -20,8 +20,8 @@
 
 #include "clientservice.h"
 
-int doInfoClient(session_node_t*);
-int startup_INFO(void);
-int enqueueInfoMessage(char *);
+extern int doInfoClient(session_node_t *);
+extern int startup_INFO(void);
+extern int enqueueInfoMessage(char *);
 
 #endif

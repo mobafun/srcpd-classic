@@ -24,7 +24,7 @@
 /* maximal number of s88-busses */
 #define S88_MAXBUSSES 4
 /* maximal number of ports */
-#define S88_MAXPORTS S88_MAXPORTSB*8*S88_MAXBUSSES
+#define S88_MAXPORTS S88_MAXPORTSB * 8 * S88_MAXBUSSES
 
 typedef struct _DDL_S88_DATA {
     int number_fb[4];
@@ -41,21 +41,21 @@ typedef struct _DDL_S88_DATA {
 
 } DDL_S88_DATA;
 
-int readconfig_DDL_S88(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
+extern int readconfig_DDL_S88(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber);
 
-int init_bus_S88(bus_t);
-void *thr_sendrec_S88(void *);
-void *thr_sendrec_dummy(void *v);
+extern int init_bus_S88(bus_t);
+extern void *thr_sendrec_S88(void *);
+extern void *thr_sendrec_dummy(void *v);
 
 #ifdef __FreeBSD__
 /* MAM 01/06/03: Emulate inb, outb and ioperm with the help of a file
  * descriptor */
-#define ioperm(a,b,c) FBSD_ioperm(a,b,c,busnumber)
-#define inb(a) FBSD_inb(a,busnumber)
-#define outb(a,b) FBSD_outb(a,b,busnumber)
-int FBSD_ioperm(int, int, int, bus_t);
-unsigned char FBSD_inb(int, bus_t);
-unsigned char FBSD_outb(unsigned char, int, bus_t);
+#define ioperm(a, b, c) FBSD_ioperm(a, b, c, busnumber)
+#define inb(a) FBSD_inb(a, busnumber)
+#define outb(a, b) FBSD_outb(a, b, busnumber)
+extern int FBSD_ioperm(int, int, int, bus_t);
+extern unsigned char FBSD_inb(int, bus_t);
+extern unsigned char FBSD_outb(unsigned char, int, bus_t);
 #endif
 
 #endif

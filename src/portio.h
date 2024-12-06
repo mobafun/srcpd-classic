@@ -1,7 +1,7 @@
 /**
  * C++ Interface: portio
  *
- * Description: 
+ * Description:
  *
  *
  * Author: Ing. Gerard van der Sel
@@ -14,11 +14,10 @@
 
 #include "config-srcpd.h"
 
-int open_port(bus_t bus);
-void close_port(bus_t bus);
-void write_port(bus_t bus, unsigned char b);
-int check_port(bus_t bus);
-unsigned int read_port(bus_t bus);
+extern int open_port(bus_t bus);
+extern void close_port(bus_t bus);
+extern void write_port(bus_t bus, unsigned char b);
+extern int check_port(bus_t bus);
+extern unsigned int read_port(bus_t bus);
 
 #endif
-

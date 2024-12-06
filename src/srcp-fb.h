@@ -32,17 +32,17 @@ typedef struct _RESET_FB
   struct timeval timestamp;
 } fb_reset_t;
 
-int startup_FB(void);
-int init_FB(bus_t bus, int number);
-int get_number_fb(bus_t bus);
-int initFB(bus_t busnumber, int addr, const char protocol, int index);
+extern int startup_FB(void);
+extern int init_FB(bus_t bus, int number);
+extern int get_number_fb(bus_t bus);
+extern int initFB(bus_t busnumber, int addr, const char protocol, int index);
 
-int getFB(bus_t bus, int port, struct timeval *time, int *value);
-int setFB( bus_t bus, int port,  int value );
-int updateFB(bus_t bus, int port, int value);
-int setFBmodul(bus_t bus, int mod, int values);
-int infoFB(bus_t bus, int port, char *msg, size_t length);
-int describeFB(bus_t bus, int addr, char *reply);
-void check_reset_fb(bus_t busnumber);
-void set_min_time(bus_t busnumber, int mt);
+extern int getFB(bus_t bus, int port, struct timeval *time, int *value);
+extern int setFB( bus_t bus, int port,  int value );
+extern int updateFB(bus_t bus, int port, int value);
+extern int setFBmodul(bus_t bus, int mod, int values);
+extern int infoFB(bus_t bus, int port, char *msg, size_t length);
+extern int describeFB(bus_t bus, int addr, char *reply);
+extern void check_reset_fb(bus_t busnumber);
+extern void set_min_time(bus_t busnumber, int mt);
 #endif

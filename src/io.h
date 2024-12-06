@@ -22,16 +22,15 @@
 
 #include "config-srcpd.h"
 
+extern int readByte(bus_t bus, bool wait, unsigned char *the_byte);
+extern void writeByte(bus_t bus, const unsigned char the_byte, unsigned long msec);
+extern void writeString(bus_t bus, const char *the_string, unsigned long msecs);
 
-int  readByte(bus_t bus, bool wait, unsigned char *the_byte);
-void writeByte(bus_t bus, const unsigned char the_byte, unsigned long msec);
-void writeString(bus_t bus, const char *the_string, unsigned long msecs);
+extern void restore_comport(bus_t bus);
+extern void save_comport(bus_t bus);
+extern void close_comport(bus_t bus);
 
-void restore_comport(bus_t bus);
-void save_comport(bus_t bus);
-void close_comport(bus_t bus);
-
-ssize_t socket_readline(int Socket, char *line, int len);
-ssize_t writen(int fd, const void *vptr, size_t n);
+extern ssize_t socket_readline(int Socket, char *line, int len);
+extern ssize_t writen(int fd, const void *vptr, size_t n);
 
 #endif
