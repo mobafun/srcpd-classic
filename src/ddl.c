@@ -78,6 +78,7 @@
 #endif
 
 void (*waitUARTempty_MM) (bus_t busnumber);
+void (*waitUARTempty)(bus_t busnumber);
 
 static int (*nanosleep_DDL) (const struct timespec * req,
                              struct timespec * rem);
