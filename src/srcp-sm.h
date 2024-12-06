@@ -21,7 +21,7 @@
 #include <sys/time.h>
 #include "config-srcpd.h"
 
-enum COMMAND {
+typedef enum COMMAND {
     SET = 0,
     GET,
     VERIFY,
@@ -29,40 +29,40 @@ enum COMMAND {
     TERM
 } sm_command_t;
 
-enum TYPE {
+typedef enum TYPE {
     REGISTER = 0,
     PAGE,
     CV,
     CV_BIT
 } sm_type_t;
 
-enum TYPEADDR {
+typedef enum TYPEADDR {
     NMRA = 0
 } sm_typeaddr_t;
 
 /* Loco decoder */
 typedef struct _SM {
-    char protocol[6];           /* currently only NMRA is supported */
+    char protocol[6]; /* currently only NMRA is supported */
     /* (for IB, but not completely, work in progress) */
     int type;
     int command;
     int protocolversion;
     int addr;
     int typeaddr;
-    int bit;                    /* bit to set/get for CVBIT */
+    int bit; /* bit to set/get for CVBIT */
     int value;
-    struct timeval tv;          /* time of change */
+    struct timeval tv; /* time of change */
 } sm_t;
 
-int enqueueSM(bus_t busnumber, int command, int type, int addr,
-              int typeaddr, int bit, int value);
-int queue_SM_isempty(bus_t busnumber);
-int dequeueNextSM(bus_t, sm_t *);
+extern int enqueueSM(bus_t busnumber, int command, int type, int addr,
+                     int typeaddr, int bit, int value);
+extern int queue_SM_isempty(bus_t busnumber);
+extern int dequeueNextSM(bus_t, sm_t *);
 
-int getSM(bus_t busnumber, int addr, sm_t *);
-int setSM(bus_t busnumber, int type, int addr, int typeaddr, int bit,
-          int value, int return_value);
-int infoSM(bus_t busnumber, int command, int type, int addr, int typeaddr,
-           int bit, int value, char *info);
+extern int getSM(bus_t busnumber, int addr, sm_t *);
+extern int setSM(bus_t busnumber, int type, int addr, int typeaddr, int bit,
+                 int value, int return_value);
+extern int infoSM(bus_t busnumber, int command, int type, int addr, int typeaddr,
+                  int bit, int value, char *info);
 
 #endif
