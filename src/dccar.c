@@ -44,6 +44,9 @@
 
 #define __dccar ((DCCAR_DATA*)buses[busnumber].driverdata)
 
+int fd;
+int mode;
+
 int readconfig_DCCAR(xmlDocPtr doc, xmlNodePtr node, bus_t busnumber)
 {
 	buses[busnumber].driverdata = malloc(sizeof(struct _DCCAR_DATA));
