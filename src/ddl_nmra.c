@@ -723,10 +723,10 @@ static void xor_two_bytes(char *byte, char *byte1, char *byte2)
 
 /*** functions to generate NMRA-DCC data packets ***/
 
-int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
+int comp_nmra_accessory(bus_t busnumber, int nr, int output, int activate,
                         int offset)
 {
-    /* command: NA <nr [0001-2044]> <outp [0,7]> <activate [0,1]>
+    /* command: NA <nr [0001-2044]> <outp [0,1]> <activate [0,1]>
        example: NA 0012 0 1  */
 
     char byte1[9];
@@ -736,6 +736,9 @@ int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
     char packetstream[PKTSIZE];
     char *p_packetstream;
 
+    int address = 0;            /* of the decoder                */
+    int pairnr = 0;             /* decoders have pair of outputs */
+
     int j;
 
     syslog_bus(busnumber, DBG_DEBUG,
@@ -743,7 +746,7 @@ int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
                "(NA) received");
 
     /* no special error handling, it's job of the clients */
-    if (address < 1 || address > 2044 || port < 0 || port > 7 ||
+    if (nr < 1 || nr > 2044 || output < 0 || output > 1 ||
         activate < 0 || activate > 1)
         return 1;
 
@@ -753,6 +756,8 @@ int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
     /* calculate the real address of the decoder and the pair number 
      * of the switch */
     /* valid decoder addresses: 0..511 */
+    address = ((nr - 1) / 4) + offset;
+    pairnr = (nr - 1) % 4;
 
     /* address byte: 10AAAAAA (lower 6 bits) */
     calc_single_byte(byte1, 0x80 | (address & 0x3f));
@@ -761,7 +766,7 @@ int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
     /* C =  activate, DD = pairnr */
     calc_single_byte(byte2,
                      0x80 | ((~address) & 0x1c0) >> 2 | activate << 3 |
-                     port);
+                     pairnr << 1 | output);
     xor_two_bytes(byte3, byte2, byte1);
 
     /* putting all together in a 'bitstream' (char array) */
@@ -787,7 +792,6 @@ int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
 
     return 1;
 }
-
 /**
   Calculate up to 4 command sequences depending on the number of possible 
   functions (taken from INIT <BUS> GL ...) for up to 28 Functions

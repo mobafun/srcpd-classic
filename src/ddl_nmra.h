@@ -43,7 +43,7 @@ extern int comp_nmra_multi_func(bus_t busnumber, int address, int direction,
                                 int speed, int func, int nspeed, int nfuncs,
                                 int mode);
 /* NMRA accessory decoder     */
-extern int comp_nmra_accessory(bus_t busnumber, int address, int port, int activate,
+extern int comp_nmra_accessory(bus_t busnumber, int nr, int output, int activate,
                                int offset);
 
 /* service mode functions */
