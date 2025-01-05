@@ -756,8 +756,8 @@ int comp_nmra_accessory(bus_t busnumber, int nr, int output, int activate,
     /* calculate the real address of the decoder and the pair number 
      * of the switch */
     /* valid decoder addresses: 0..511 */
-    address = ((nr - 1) / 4) + offset;
-    pairnr = (nr - 1) % 4;
+    address = (nr + offset) / 4;
+    pairnr = (nr + offset) % 4;
 
     /* address byte: 10AAAAAA (lower 6 bits) */
     calc_single_byte(byte1, 0x80 | (address & 0x3f));
